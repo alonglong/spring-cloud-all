@@ -1,0 +1,26 @@
+server:
+  port: 8040
+
+spring:
+  application:
+    name: order-service
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
+      discovery:
+        #登录名，默认是${spring.cloud.nacos.username}
+        username: nacos
+        #密码，默认是${spring.cloud.nacos.password}
+        password: nacos
+        #命名空间，默认是public
+        namespace: public
+        #是否是临时实例，默认为true
+        ephemeral: true
+        #分组 默认就是DEFAULT_GROUP
+        group: DEFAULT_GROUP
+        #权重 默认为1 配合负载均衡，权重越高，分配到的流量也就越大
+        weight: 1
+feign:
+  sentinel:
+    # openfeign整合sentinel的开关
+    enabled: true

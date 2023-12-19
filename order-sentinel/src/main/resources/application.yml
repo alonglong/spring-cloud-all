@@ -1,0 +1,19 @@
+server:
+  port: 8061
+
+spring:
+  application:
+    name: order-sentinel
+  cloud:
+    sentinel:
+      transport:
+        dashboard: http://127.0.0.1:8080
+      web-context-unify: false # 默认将调用链路收敛，关闭之后就可以针对业务方法进行流控
+      datasource:
+        flow-rule:
+          nacos:
+            server-addr: 127.0.0.1:8848
+            username: nacos
+            password: nacos
+            dataId: order-seninel-flow-rule
+            rule-type: flow

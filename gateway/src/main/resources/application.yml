@@ -1,0 +1,31 @@
+server:
+  port: 8088
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        username: nacos
+        password: nacos
+    gateway:
+#      discovery:
+#        locator:
+#          enabled: true # 开启服务发现 如果 配了这个下面的可以不用配
+      # 推荐下面这么配
+      routes:
+        - id: order_route # 路由唯一标识
+          uri: lb://order-service # 路由地址  lb:使用nacos中的本地负载均衡策略
+          predicates:
+            - Path=/order-service/** # 路由匹配规则
+          filters:
+            - StripPrefix=1 # 转发之前去掉第一层路径
+      # 跨域配置
+      globalcors:
+        cors-configurations:
+          '[/**]': # 允许跨域访问的资源
+            allowedOrigins: "*" # 跨域允许来源
+            allowedMethods:
+              - GET
+              - POST

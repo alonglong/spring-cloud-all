@@ -1,0 +1,16 @@
+server:
+  port: 8023
+
+spring:
+  application:
+    name: product-service
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
+      discovery:
+        #登录名，默认是${spring.cloud.nacos.username}
+        username: nacos
+        #密码，默认是${spring.cloud.nacos.password}
+        password: nacos
+        #命名空间，默认是public
+        namespace: public

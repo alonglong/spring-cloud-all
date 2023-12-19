@@ -1,0 +1,25 @@
+spring:
+  application:
+    # 会自动根据服务名拉取dataId对应的配置文件，如果dataId跟服务名不一致,需要指定dataId
+    name: com.along.order
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
+      username: nacos
+      password: nacos
+      config:
+        # nacos客户端默认是properties的文件扩展名，如果改成其他的，需要指定
+        file-extension: yaml
+        namespace: public
+        group: DEFAULT_GROUP
+        shared-configs:
+          - data-id: com.along.common.properties
+            refresh: true
+        extension-configs:
+          - data-id: com.along.common02.properties
+            refresh: true
+
+# 配置文件优先级
+# profile > 默认配置文件 > extension-configs下标越大优先级越大 > shared-configs下标越大优先级越大
+
+
